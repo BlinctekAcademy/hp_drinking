@@ -45,4 +45,28 @@ class AppColors {
   static const shape = Color(0xFFFAFAFC);
   static const background = Color(0xFFFFFFFF);
   static const input = Color(0xFFB1B0B8);
+
+  //House Griffindor
+  static const griffindorDarkRed = Color(0xFF740001);
+  static const gryffindorRed = Color(0xFFae0001);
+  static const griffindorYellow = Color(0xFFeeba30);
+  static const griffindorGold = Color(0xFFd3a625);
+
+  //House Slytherin
+  static const slytherinDarkGreen = Color(0xFF1a472a);
+  static const slytherinGreen = Color(0xFF2a623d);
+  static const slytherinDarkSilver = Color(0xFF5d5d5d);
+  static const slytherinLightSilver = Color(0xFFaaaaaa);
+
+  //House Ravenclaw
+  static const ravenclawDarkBlue = Color(0xFF0e1a40);
+  static const ravenclawBlue = Color(0xFF222f5b);
+  static const theGreyLady = Color(0xFFbebebe);
+  static const ravenclawGold = Color(0xFF946b2d);
+
+  //House Hufflepuff
+  static const hufflepuffCanary = Color(0xFFecb939);
+  static const hufflepuffLightCanary = Color(0xFFf0c75e);
+  static const hufflepuffLightBrown = Color(0xFF726255);
+  static const hufflepuffDarkBrown = Color(0xFF372e29);
 }
