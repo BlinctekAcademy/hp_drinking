@@ -1,21 +1,20 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:hp_drinking/core/models/drinks/drink_model.dart';
+import 'package:hp_drinking/core/models/questions/question_model.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:hp_drinking/core/models/elixirs/elixir_model.dart';
-
-Future<Elixirs> fetchElixirs() async {
+Future<Questions> fetchQuestions() async {
   final response = await http.get(
     Uri.parse(
-      'https://wizard-world-api.herokuapp.com/Elixirs/0106fb32-b00d-4d70-9841-4b7c2d2cca71',
+      'http://192.168.0.46:8080/question',
     ),
   );
 
   if (response.statusCode == 200) {
-    return Elixirs.fromJson(jsonDecode(response.body));
+    return Questions.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to load elixir');
+    throw Exception('Failed to load Question');
   }
 }
 
@@ -29,6 +28,6 @@ Future<Drink> fetchRandomDrinks() async {
   if (response.statusCode == 200) {
     return Drink.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to load elixir');
+    throw Exception('Failed to load Drink');
   }
 }

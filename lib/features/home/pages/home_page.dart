@@ -1,54 +1,83 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:hp_drinking/core/models/drinks/drink_model.dart';
-import 'package:hp_drinking/core/models/elixirs/elixir_model.dart';
-import 'package:hp_drinking/features/home/data/fetch_elixirs.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hp_drinking/core/shared/themes/app_images.dart';
+import 'package:hp_drinking/features/home/pages/widgets/card_model_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  late Future<Elixirs> futureElixirs;
-  late Future<Drink> futureDrink;
-  @override
-  void initState() {
-    super.initState();
-    futureElixirs = fetchElixirs();
-    futureDrink = fetchRandomDrinks();
-  }
-
   @override
   Widget build(BuildContext context) {
+    // var theme = Modular.get<ThemeCubit>();
+    var cardsList = <Widget>[
+      CardModelWidget(
+        onTap: () {
+          Modular.to.pushNamed('/home/question');
+        },
+        child: Image.asset(AppImages.magic),
+      ),
+      CardModelWidget(
+        onTap: () {
+          Modular.to.pushNamed('/home/question');
+        },
+        child: Image.asset(AppImages.logo),
+      ),
+      CardModelWidget(
+        onTap: () {
+          Modular.to.pushNamed('/home/question');
+        },
+        child: Image.asset(AppImages.magic),
+      ),
+    ];
+
     return MaterialApp(
       title: 'Fetch Elixir test',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: Scaffold(
+        backgroundColor: Colors.black12,
         appBar: AppBar(
-          title: const Text('Fetch Elixir'),
+          title: const Text('HP Drinking'),
+          backgroundColor: Colors.yellowAccent,
         ),
-        body: Center(
-          child: FutureBuilder<Drink>(
-            future: futureDrink,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  children: [
-                    Text('${snapshot.data!.drinks![0].strInstructions}'),
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-
-              // By default, show a loading spinner.
-              return const CircularProgressIndicator();
-            },
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text(
+              'Hey, muggle!!',
+              style: TextStyle(fontSize: 35, color: Colors.white),
+            ),
+            Center(
+              child: CarouselSlider(
+                items: cardsList,
+                options: CarouselOptions(
+                  height: 400,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  enlargeCenterPage: true,
+                  viewportFraction: 0.8,
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 2000),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                ),
+              ),
+            ),
+            const Text(
+              'Choose your magical card!',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 35,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );
