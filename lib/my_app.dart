@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hp_drinking/core/shared/themes/app_colors.dart';
+import 'package:hp_drinking/core/themes/app_colors.dart';
 
 class AppWidget extends StatelessWidget {
   AppWidget({Key? key}) : super(key: key) {
@@ -21,7 +21,7 @@ class AppWidget extends StatelessWidget {
       title: 'HP Drinking',
       theme: ThemeData(
         primarySwatch: Colors.orange,
-        primaryColor: AppColors.primary,
+        primaryColor: const Color.fromARGB(255, 236, 185, 57),
       ),
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,

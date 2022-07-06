@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hp_drinking/core/shared/themes/app_gradients.dart';
-import 'package:hp_drinking/core/shared/themes/app_images.dart';
+import 'package:hp_drinking/core/themes/app_images.dart';
+import 'package:hp_drinking/core/themes/app_gradients.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
           ),
           child: Center(
             child: Image.asset(
-              AppImages.logo,
+              AppImages.brasao,
             ),
           ),
         ),

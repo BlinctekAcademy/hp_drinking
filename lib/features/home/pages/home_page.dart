@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hp_drinking/core/shared/themes/app_images.dart';
-import 'package:hp_drinking/features/home/pages/widgets/card_model_widget.dart';
+import 'package:hp_drinking/core/themes/app_images.dart';
+import 'package:hp_drinking/features/home/widgets/card_model_widget.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +13,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  AssetsAudioPlayer? _assetsAudioPlayer = AssetsAudioPlayer();
+  @override
+  void initState() {
+    super.initState();
+
+    _assetsAudioPlayer?.open(
+      Audio("assets/audios/hpsong.mp3"),
+    );
+    _assetsAudioPlayer?.play();
+  }
+
+  @override
+  void dispose() {
+    _assetsAudioPlayer = null;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // var theme = Modular.get<ThemeCubit>();
@@ -20,36 +38,57 @@ class _HomePageState extends State<HomePage> {
         onTap: () {
           Modular.to.pushNamed('/home/question');
         },
-        child: Image.asset(AppImages.magic),
+        child: Image.asset(AppImages.oculos),
       ),
       CardModelWidget(
         onTap: () {
           Modular.to.pushNamed('/home/question');
         },
-        child: Image.asset(AppImages.logo),
+        child: Image.asset(AppImages.comensais),
       ),
       CardModelWidget(
         onTap: () {
           Modular.to.pushNamed('/home/question');
         },
-        child: Image.asset(AppImages.magic),
+        child: Image.asset(AppImages.estacao),
+      ),
+      CardModelWidget(
+        onTap: () {
+          Modular.to.pushNamed('/home/question');
+        },
+        child: Image.asset(AppImages.reliquias),
       ),
     ];
 
     return MaterialApp(
       title: 'Fetch Elixir test',
       home: Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: const Color.fromARGB(255, 26, 71, 42),
         appBar: AppBar(
-          title: const Text('HP Drinking'),
-          backgroundColor: Colors.yellowAccent,
+          leading: GestureDetector(
+            onTap: () {
+              setState(() {});
+            },
+            child: const Icon(
+              Icons.play_arrow,
+            ),
+          ),
+          title: const Text(
+            'HP Drinking',
+            style: TextStyle(
+              fontSize: 40,
+              fontFamily: "HarryP",
+            ),
+          ),
+          backgroundColor: const Color.fromARGB(255, 42, 98, 61),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Text(
               'Hey, muggle!!',
-              style: TextStyle(fontSize: 35, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 70, color: Colors.white, fontFamily: 'HarryP'),
             ),
             Center(
               child: CarouselSlider(
@@ -73,7 +112,8 @@ class _HomePageState extends State<HomePage> {
               'Choose your magical card!',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 35,
+                fontSize: 70,
+                fontFamily: 'HarryP',
               ),
               textAlign: TextAlign.center,
             ),
