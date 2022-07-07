@@ -39,9 +39,10 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                     Text(
                       snapshot.data!.question,
                       style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 40,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
+                        fontFamily: "HarryP",
                       ),
                     ),
                     const SizedBox(
@@ -84,7 +85,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               }
 
               // By default, show a loading spinner.
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             },
           ),
           const SizedBox(

@@ -13,26 +13,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  AssetsAudioPlayer? _assetsAudioPlayer = AssetsAudioPlayer();
+  late AssetsAudioPlayer _assetsAudioPlayer;
+  bool tocando = true;
   @override
   void initState() {
     super.initState();
-
-    _assetsAudioPlayer?.open(
+    _assetsAudioPlayer = AssetsAudioPlayer.newPlayer();
+    _assetsAudioPlayer.open(
       Audio("assets/audios/hpsong.mp3"),
     );
-    _assetsAudioPlayer?.play();
+    _assetsAudioPlayer.play();
   }
 
   @override
   void dispose() {
-    _assetsAudioPlayer = null;
+    _assetsAudioPlayer.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // var theme = Modular.get<ThemeCubit>();
     var cardsList = <Widget>[
       CardModelWidget(
         onTap: () {
@@ -67,11 +67,18 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
+              if (tocando) {
+                _assetsAudioPlayer.stop();
+              }
+              if (!tocando) {
+                _assetsAudioPlayer.play();
+              }
+              tocando = !tocando;
               setState(() {});
             },
-            child: const Icon(
-              Icons.play_arrow,
-            ),
+            child: tocando
+                ? const Icon(Icons.stop_sharp)
+                : const Icon(Icons.play_arrow),
           ),
           title: const Text(
             'HP Drinking',

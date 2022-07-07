@@ -16,7 +16,7 @@ class GameModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
-          child: (context, args) => InstructionsPage(),
+          child: (context, args) => const InstructionsPage(),
         ),
         ChildRoute(
           '/home_page',
